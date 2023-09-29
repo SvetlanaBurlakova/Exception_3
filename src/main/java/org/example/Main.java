@@ -59,8 +59,12 @@ public class Main {
             }
         }
 
-
     }
+    
+    /*
+    Метод Проверяет полноту введенных данных, возвращает 0, если кол-во требуемых данных введено верно, 
+    -1 - Если данных недостаточно, -2 - если данных много
+    */
     public static int CheckFullData(String[] strArr){
         if (strArr.length == 6){
             return 0; // Возвращает 0, когда кол-во данных полное
@@ -72,13 +76,23 @@ public class Main {
         }
     }
 
+    /*
+    Метод возращает истину, если строка не пустая и содержит только буквы
+    */
     public static boolean isAlpha(String s) {
         return s != null && s.chars().allMatch(Character::isLetter);
     }
 
+    /*
+    Метод возращает истину, если строка не пустая и содержит только цифры
+    */
     public static boolean isDigit(String s) {
         return s != null && s.chars().allMatch(Character::isDigit);
     }
+
+    /*
+    Метод возращает строку, содержащую ФИО, если такая трока не найдена, выбрасывается исключение NameDataNotFull
+    */
     public static String GetName(String[] strArr){
         String name = "";
         for (String str:
@@ -92,7 +106,10 @@ public class Main {
         }
         return name;
     }
-
+    
+    /*
+    Метод возращает строку, содержащую дату рождения, если такая трока не найдена, выбрасывается исключение BirthdateDataNotFound
+    */
     public static String GetBirthdate(String[] strArr){
         for (String str:
                 strArr) {
@@ -103,6 +120,9 @@ public class Main {
         throw new BirthdateDataNotFound();
     }
 
+    /*
+    Метод возращает строку, содержащую телефон, если такая трока не найдена, выбрасывается исключение PhoneDataNotFound
+    */
     public static String GetPhoneNumber(String[] strArr){
         for (String str:
                 strArr) {
@@ -113,6 +133,9 @@ public class Main {
         throw new PhoneDataNotFound();
     }
 
+    /*
+    Метод возращает строку, содержащую пол, если такая трока не найдена, выбрасывается исключение GenderDataNotFound
+    */
     public static String GetGender(String[] strArr){
         for (String str:
                 strArr) {
@@ -124,6 +147,9 @@ public class Main {
         throw new GenderDataNotFound();
     }
 
+    /*
+    Класс исключения - не достаточно данных ФИО
+    */  
     static class NameDataNotFull extends IllegalArgumentException
     {
 
@@ -131,6 +157,10 @@ public class Main {
             super("ФИО введено не полностью");
         }
     }
+    
+    /*
+    Класс исключения - нет даты рождения или не правильный ввод данных
+    */ 
     static class BirthdateDataNotFound extends IllegalArgumentException {
 
         public BirthdateDataNotFound() {
@@ -138,6 +168,9 @@ public class Main {
         }
     }
 
+    /*
+    Класс исключения - нет телефона или не правильный ввод данных
+    */ 
     static class PhoneDataNotFound extends IllegalArgumentException {
 
         public PhoneDataNotFound() {
@@ -145,6 +178,9 @@ public class Main {
         }
     }
 
+    /*
+    Класс исключения - нет информации о поле или не правильный ввод данных
+    */ 
     static class GenderDataNotFound extends IllegalArgumentException {
 
         public GenderDataNotFound() {
